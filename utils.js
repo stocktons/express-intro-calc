@@ -6,12 +6,14 @@ const { BadRequestError } = require("./expressError");
 function convertStrNums(strNums) {
   // if the conversion isn't successful, throw a BadRequestError and will
   // be handled in your route
+  let nums = [];
   for (let str of strNums) {
     if (!parseFloat(str)) {
       throw new BadRequestError(`${str} is not a number`);
     }
+    nums.push(+str);
   }
-  let nums = strNums.map(n => +n);
+  // let nums = strNums.map(n => +n);
   return nums;
 }
 
